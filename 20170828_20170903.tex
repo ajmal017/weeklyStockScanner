@@ -1,4 +1,6 @@
 \documentclass{article}
+\usepackage[ampersand]{easylist}
+\usepackage{amsmath}
 \begin{document}
 \title{Weekly Stock Scanner Result \\ 20170828 to 20170903}
 \author{KAI YIN, CHAN}
@@ -29,6 +31,37 @@ The above 8 criteria focuses on the profitability of the company of concern. It 
 At last, it is suggested to stand behind giant. Therefore, it is required that the company of concern should have more than 10 institutional owners, but the institutional ownership percentage should be lower than 35 \% to avoid potential price manipulation.
 
 \subsection{Model 2}
+Model 2 uses historical EPS and DPS to estimate the value of a stock. If the current price is lower than the value plus some required rate of return, the stock is therefore worth buying.
+
+\subsubsection{Notations}
+\begin{easylist}
+& r\% : required rate of return
+& T : future year
+& t : now
+& D :dividend
+& P : price
+& APR: average payout ratio
+& EPSGR : average annual EPS growth rate
+& APE : average PE ratio
+\end{easylist}
+
+\subsubsection{Calculations}
+\begin{equation}
+D_T = \{\frac{EPS  [(1+EPSG)^{T+1} - 1]}{EPSGR} - EPS_t\}  APR
+\end{equation}
+
+The first part of the equation calculates the 
+\begin{equation}
+P_T = APE \times EPS_t \times (1+EPSGR)^T
+\end{equation}
+
+Price per earnings multiplies by earning per shares equals price per shares. The last part of the formula assumed the current EPS will growth by EPSGR in the coming T year.
+
+\begin{equation}
+P_{target} = \frac{D_T + P_T}{(1+r\%)^T}
+\end{equation}
+
+This is a simple time value of money equation.
 
 \section{Results}
 \subsection{Model 1 only}
@@ -36,5 +69,4 @@ At last, it is suggested to stand behind giant. Therefore, it is required that t
 \subsection{Model 1 and 2 combined}
 
 \section{Actions}
-
 \end{document}
